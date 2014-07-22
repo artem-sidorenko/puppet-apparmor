@@ -33,7 +33,7 @@ Puppet::Type.type(:apparmor_profile).provide(:apparmor_profile,
       line.strip!
       profiles << new(
         :name => line,
-        :ensure => :enforced,
+        :ensure => :enforced
      )
     end
 
@@ -45,7 +45,7 @@ Puppet::Type.type(:apparmor_profile).provide(:apparmor_profile,
       line.strip!
       profiles << new(
         :name => line,
-        :ensure => :complain,
+        :ensure => :complain
      )
     end
 
