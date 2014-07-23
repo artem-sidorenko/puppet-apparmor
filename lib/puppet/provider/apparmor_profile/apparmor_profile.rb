@@ -19,6 +19,8 @@ Puppet::Type.type(:apparmor_profile).provide(:apparmor_profile,
   commands :aa_status => "/usr/sbin/aa-status"
   commands :aa_disable => "/usr/sbin/aa-disable"
 
+  @aa_disable_dir = "/etc/apparmor.d/disable"
+
   mk_resource_methods
 
   def self.instances
@@ -50,7 +52,15 @@ Puppet::Type.type(:apparmor_profile).provide(:apparmor_profile,
     end
 
     #do the disabled profiles
-    #TBD
+    Dir.foreach(@aa_disable_dir) do |filename|
+      next if filename=='.' or filename=='..'
+      filename.gsub!(".","/")
+      filename = "/#{filename}"
+      profiles << new(
+        :name => filename,
+        :ensure => :disabled
+     )
+    end
 
     return profiles
   end

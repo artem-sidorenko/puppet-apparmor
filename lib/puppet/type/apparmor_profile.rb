@@ -23,6 +23,8 @@ Puppet::Type.newtype(:apparmor_profile) do
 
     newvalue(:complain)
 
+    newvalue(:disabled)
+
     def retrieve
       provider.properties[:ensure]
     end
