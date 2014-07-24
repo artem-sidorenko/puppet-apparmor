@@ -2,6 +2,9 @@ puppet-apparmor
 ===============
 Puppet module to manage apparmor profiles.
 
+[![Build Status](https://travis-ci.org/artem-sidorenko/puppet-apparmor.svg?branch=master)](https://travis-ci.org/artem-sidorenko/puppet-apparmor)
+[![Coverage Status](https://coveralls.io/repos/artem-sidorenko/puppet-apparmor/badge.png?branch=master)](https://coveralls.io/r/artem-sidorenko/puppet-apparmor?branch=master)
+
 * [Introduction](#introduction)
 * [Features](#features)
 * [Requirements](#requirements)
