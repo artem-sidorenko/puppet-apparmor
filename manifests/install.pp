@@ -9,6 +9,10 @@
 # See the COPYRIGHT file at the top-level directory of this distribution
 # and at https://github.com/artem-sidorenko/puppet-apparmor/blob/master/COPYRIGHT
 #
-class apparmor::install(
-){
+class apparmor::install inherits apparmor{
+
+  package { $package_names:
+    ensure => $package_ensure,
+  }
+
 }
