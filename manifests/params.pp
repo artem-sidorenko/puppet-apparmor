@@ -10,10 +10,11 @@
 # and at https://github.com/artem-sidorenko/puppet-apparmor/blob/master/COPYRIGHT
 #
 class apparmor::params (
-  $package_ensure = 'present',
-  $service_enable = true,
-  $service_ensure = 'running',
-  $service_manage = true,
+  $package_ensure   = 'present',
+  $service_enable   = true,
+  $service_ensure   = 'running',
+  $service_manage   = true,
+  $profile_location = '/etc/apparmor.d',
 ){
 
   case $::osfamily {

@@ -23,6 +23,7 @@ class apparmor (
   validate_bool($service_enable)
   validate_string($service_ensure)
   validate_bool($service_manage)
+  validate_string($service_name)
 
   # puppet bug #8040, http://docs.puppetlabs.com/puppet/2.7/reference/lang_containment.html#known-issues
   anchor { 'apparmor::begin': } ->
