@@ -27,22 +27,32 @@ define apparmor::profile(
   $template_params = undef,
 ){
 
-  validate_re($ensure,['^enforce$','^complain$','^disabled$','^absent$'])
+  include apparmor
+
+  validate_re($ensure,['^enforced$','^complain$','^disabled$','^absent$'])
 
   #convert slashes in the name to the apparmor pointed name
   $aa_name = apparmor_normalize_name($name)
-  notify{$aa_name:}
+  $aa_profile_path = "${$apparmor::params::profile_location}/${aa_name}"
 
-  if ($source) {
-    file{"${$apparmor::params::profile_location}/${aa_name}":
+  if ($ensure == 'absent') {
+    file{$aa_profile_path:
+      ensure => absent,
+    }
+  }elsif ($source) {
+    file{$aa_profile_path:
       ensure => present,
       source => $source,
     }
   }elsif ($template) {
-    file{"${$apparmor::params::profile_location}/${aa_name}":
+    file{$aa_profile_path:
       ensure  => present,
       content => template($template),
     }
+  }
+
+  apparmor_profile{$name:
+    ensure => $ensure,
   }
 
 }
