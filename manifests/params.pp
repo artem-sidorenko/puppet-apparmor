@@ -19,7 +19,7 @@ class apparmor::params (
 
   case $::osfamily {
     'Debian': {
-      $package_names = ['apparmor']
+      $package_names = ['apparmor','apparmor-utils']
       $service_name  = 'apparmor'
     }
     default: {
