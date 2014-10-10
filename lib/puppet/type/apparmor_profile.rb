@@ -30,16 +30,4 @@ Puppet::Type.newtype(:apparmor_profile) do
     end
   end
 
-  newparam(:source) do
-    desc "Optional source of profile for File type, e.g. puppet:///modules/site/usr.bin.ping"
-  end
-
-  newparam(:template) do
-    desc "Optional template for this profile, will be compiled with template()"
-  end
-
-  newparam(:template_vars) do
-    desc "Optional hash of vars for the template compilation"
-  end
-  
 end
