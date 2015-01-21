@@ -31,6 +31,11 @@ Puppet::Type.newtype(:apparmor_profile) do
       provider.disable
     end
 
+    #disable absent profiles
+    newvalue(:absent) do
+      provider.disable
+    end
+
     def retrieve
       provider.properties[:ensure]
     end
