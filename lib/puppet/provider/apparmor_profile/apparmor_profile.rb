@@ -70,4 +70,16 @@ Puppet::Type.type(:apparmor_profile).provide(:apparmor_profile,
     @property_hash
   end
 
+  def enforce
+    aa_enforce resource[:name]
+  end
+
+  def complain
+    aa_complain resource[:name]
+  end
+
+  def disable
+    aa_disable resource[:name]
+  end
+
 end

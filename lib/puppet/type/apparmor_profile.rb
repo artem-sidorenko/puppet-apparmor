@@ -19,11 +19,17 @@ Puppet::Type.newtype(:apparmor_profile) do
   end
 
   ensurable do
-    newvalue(:enforced)
+    newvalue(:enforced) do
+      provider.enforce
+    end
 
-    newvalue(:complain)
+    newvalue(:complain) do
+      provider.complain
+    end
 
-    newvalue(:disabled)
+    newvalue(:disabled) do
+      provider.disable
+    end
 
     def retrieve
       provider.properties[:ensure]
