@@ -34,6 +34,7 @@ Requirements
 Limitations
 ===========
   - Suse Linux isn't supported yet, but it should be easy to adapt it (pull requests are welcome)
+  - Template functionality isn't fully implemented yet
 
 Structure
 =========
