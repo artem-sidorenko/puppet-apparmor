@@ -43,11 +43,13 @@ define apparmor::profile(
     file{$aa_profile_path:
       ensure => present,
       source => $source,
+      before => Apparmor_profile[$name],
     }
   }elsif ($template) {
     file{$aa_profile_path:
       ensure  => present,
       content => template($template),
+      before => Apparmor_profile[$name],
     }
   }
 
