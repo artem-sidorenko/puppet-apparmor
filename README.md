@@ -29,11 +29,31 @@ Requirements
 ============
   - Ubuntu Linux
     - Tested on 12.04 and 14.04
-  - Puppet
+  - Puppet >2.7.x (tested on puppet 2.7.11)
 
 Limitations
 ===========
   - Suse Linux isn't supported yet, but it should be easy to adapt it (pull requests are welcome)
+
+Structure
+=========
+  This module uses both module types of puppet: native ruby type/provider and puppet DSL module:
+
+  - Native ruby type `apparmor_profile` is used for apparmor runtime configuration/control and ideally shouldn't be invoked directly
+  - `apparmor::*` is a puppet DSL module, where `apparmor::profile` builds an overlay over the native module an extends the functionality with templates file management of profiles
+
+Folder structure:
+
+  - `lib/` - native ruby type and provider, incl helper functions
+  - `manifests/` - puppet DSL code
+    - `init.pp` - `apparmor` initialization class, ensures the installation and service configuration of apparmor. Included by other classes/types
+    - `install.pp` - `apparmor::install` class, installs apparmor packages
+    - `params.pp` - `apparmor::params` class, some global defaults reused in other classes
+    - `profile.pp` - `apparmor::profile` type, main entrance point for managing apparmor profiles
+    - `service.pp` - `apparmor::service` class, controlls the apparmor service
+  - `spec/` - puppet unit tests
+  - `.travis.yml`, `Rakefile`, `.gemfile`, `.fixtures.yml` - used for travis CI tests
+
 
 How to use it
 =============
