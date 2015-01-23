@@ -49,7 +49,7 @@ Folder structure:
     - `init.pp` - `apparmor` initialization class, ensures the installation and service configuration of apparmor. Included by other classes/types
     - `install.pp` - `apparmor::install` class, installs apparmor packages
     - `params.pp` - `apparmor::params` class, some global defaults reused in other classes
-    - `profile.pp` - `apparmor::profile` type, main entrance point for managing apparmor profiles
+    - `profile.pp` - `apparmor::profile` type, main entry point for managing apparmor profiles
     - `service.pp` - `apparmor::service` class, controlls the apparmor service
   - `spec/` - puppet unit tests
   - `.travis.yml`, `Rakefile`, `.gemfile`, `.fixtures.yml` - used for travis CI tests
@@ -57,6 +57,34 @@ Folder structure:
 
 How to use it
 =============
+
+Controlling an existing default profile
+
+```puppet
+apparmor::profile{"/sbin/dhclient":
+  #possible options: enforced, complain, disabled, absent
+  ensure => enforced,
+}
+```
+
+Rolling out a new profile without parameters
+
+```puppet
+apparmor::profile{"/sbin/dhclient":
+  ensure => enforced,
+  source => 'puppet:///modules/site_something/sbin.dhclient',
+}
+```
+
+Rolling out a new profile with parameters
+
+```puppet
+apparmor::profile{"/sbin/dhclient":
+  ensure   => enforced,
+  template => 'site_something/sbin.dhclient.erb',
+  template_vars => { hash_structure TBD },
+}
+```
 
 Contributing
 ============
