@@ -11,8 +11,7 @@
 #
 class apparmor::install inherits apparmor{
 
-  package { $package_names:
+  ensure_resource('package', $package_names, {
     ensure => $package_ensure,
-  }
-
+    })
 }
